@@ -40,7 +40,7 @@ function Login() {
                             <Password keyfilter='alphanum' className='col-12' onChange={(e) => setPassword(e.target.value)} toggleMask feedback={false}/>
                             <a href="/recovery" className='mt-2 no-underline'>¿Olvidaste tu contraseña?</a>
                             <Button className='mt-3' onClick={login} label='Iniciar sesión' disabled={validForm}/>
-                            <p>¿No tienes cuenta? <a href="/register" className='mt-5 no-underline'>Create una</a></p>
+                            <p>¿No tienes cuenta? <a href="/register" className=''>Create una</a></p>
                         </div>
                     </form>
                 </div>
