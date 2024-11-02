@@ -11,9 +11,9 @@ function AllRoutes() {
                 <Route path='/' element={<Login />} />
                 <Route path='/recovery' element={<RecoveryPassword />} />
                 <Route path='/register' element={<Register />} />
+                <Route path='/catalogue' element={<Catalogue/>} />
             </Routes>
         </Router>
     )
 }
-
 export default AllRoutes
