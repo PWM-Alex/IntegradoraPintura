@@ -10,6 +10,8 @@ function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [validEmail, setValidEmail] = useState(false)
+
+    const styleLink = 'mt-2 no-underline'
     
     useEffect(() => {
         if (email.length > 0 && password.length > 0) {
@@ -38,9 +40,9 @@ function Login() {
                             {!validEmail ? null : <span className='text-sm text-red-400'>Correo electronico con formato invalido</span>}
                             <span className='col-12 mt-2'>Contraseña:</span>
                             <Password keyfilter='alphanum' className='col-12' onChange={(e) => setPassword(e.target.value)} toggleMask feedback={false}/>
-                            <a href="/recovery" className='mt-2 no-underline'>¿Olvidaste tu contraseña?</a>
+                            <a href="/recovery" className={`${styleLink}`}>¿Olvidaste tu contraseña?</a>
                             <Button className='mt-3' onClick={login} label='Iniciar sesión' disabled={validForm}/>
-                            <p>¿No tienes cuenta? <a href="/register" className=''>Create una</a></p>
+                            <p>¿No tienes cuenta? <a href="/register" className={`${styleLink}`}>Create una</a></p>
                         </div>
                     </form>
                 </div>

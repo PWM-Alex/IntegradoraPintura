@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Login from '../access-control/components/Login'
 import RecoveryPassword from '../access-control/components/RecoveryPassword'
 import Register from '../access-control/components/Register'
+import Catalogue from '../Catalogue-client/catalogue'
 
 function AllRoutes() {
     return (
