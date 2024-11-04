@@ -10,6 +10,10 @@ export const validMail = (email) => {
         return valid;
     } else {
         return valid;
-    }
-    
+    }   
+}
+
+export const loginMethod = async ({data, reload}) => {
+    localStorage.setItem('session', JSON.stringify({user: data.mail, rol: 1}));
+    reload();
 }
