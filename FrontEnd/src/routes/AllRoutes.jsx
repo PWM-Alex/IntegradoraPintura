@@ -11,23 +11,27 @@ function AllRoutes() {
     const [role, setRole] = React.useState(validSessionExist ? JSON.parse(validSessionExist).rol : null);
     const [reload, setReload] = React.useState(false);
 
-    const Reload = () => {        
+    const Reload = () => {
         setReload(true)
     }
 
-     React.useEffect(()=>{
-     },[reload])
-    
+    React.useEffect(() => {
+    }, [reload])
+
     return (
         <>
-        {validSessionExist ? <NavBar session={role}/> : null}        
+            {validSessionExist ? <NavBar session={role} /> : null}
             <Router>
-                <Routes>
-                    <Route path='/' element={<Login reload={Reload} />} />
-                    <Route path='/recovery' element={<RecoveryPassword />} />
-                    <Route path='/register' element={<Register />} />
-                    <Route path='/catalogue' element={<Catalogue />} />
-                </Routes>
+                {validSessionExist ?
+                    <Routes>
+                        <Route path='/catalogue' element={<Catalogue />} />
+                    </Routes> :
+                    <Routes>
+                        <Route path='/' element={<Login reload={Reload} />} />
+                        <Route path='/recovery' element={<RecoveryPassword />} />
+                        <Route path='/register' element={<Register />} />
+                    </Routes>
+                }
             </Router>
         </>
     )
