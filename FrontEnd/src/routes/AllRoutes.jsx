@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import NavBar from '../global-components/NavBar'
 import Login from '../access-control/components/Login'
 import RecoveryPassword from '../access-control/components/RecoveryPassword'
@@ -10,6 +10,7 @@ function AllRoutes() {
     const validSessionExist = localStorage.getItem('session');
     const [role, setRole] = React.useState(validSessionExist ? JSON.parse(validSessionExist).rol : null);
     const [reload, setReload] = React.useState(false);
+    const navigate = useNavigate();
 
     const Reload = () => {
         setReload(true)
@@ -18,10 +19,13 @@ function AllRoutes() {
     React.useEffect(() => {
     }, [reload])
 
+    React.useEffect(() => {
+        validSessionExist ? navigate('/catalogue') : navigate('/')
+    }, [])
+
     return (
         <>
             {validSessionExist ? <NavBar session={role} /> : null}
-            <Router>
                 {validSessionExist ?
                     <Routes>
                         <Route path='/catalogue' element={<Catalogue />} />
@@ -32,7 +36,6 @@ function AllRoutes() {
                         <Route path='/register' element={<Register />} />
                     </Routes>
                 }
-            </Router>
         </>
     )
 }

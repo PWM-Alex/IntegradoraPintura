@@ -1,60 +1,53 @@
-import React from "react";
-import { Card } from "primereact/card";
+import React, { useState, Suspense, lazy } from "react";
 import "primeicons/primeicons.css";
-import img from "../assets/prueba.png";
+import { DataView } from 'primereact/dataview';
 
+const Card = lazy(() => import('./components/Card'));
 const Catalogue = () => {
+  const [products, setProducts] = useState([
+    { name: 'Product 1', inventoryStatus: 'INSTOCK' },
+    { name: 'Product 2', inventoryStatus: 'LOWSTOCK' },
+    { name: 'Product 3', inventoryStatus: 'OUTOFSTOCK' },
+    { name: 'Product 4', inventoryStatus: 'INSTOCK' },
+    { name: 'Product 5', inventoryStatus: 'INSTOCK' },
+    { name: 'Product 6', inventoryStatus: 'OUTOFSTOCK' },
+    { name: 'Product 7', inventoryStatus: 'INSTOCK' },
+    { name: 'Product 8', inventoryStatus: 'INSTOCK' },
+    { name: 'Product 9', inventoryStatus: 'INSTOCK' },
+    { name: 'Product 2', inventoryStatus: 'LOWSTOCK' },
+    { name: 'Product 3', inventoryStatus: 'OUTOFSTOCK' },
+    { name: 'Product 4', inventoryStatus: 'INSTOCK' },
+    { name: 'Product 5', inventoryStatus: 'INSTOCK' },
+    { name: 'Product 6', inventoryStatus: 'OUTOFSTOCK' },
+    { name: 'Product 7', inventoryStatus: 'INSTOCK' },
+    { name: 'Product 8', inventoryStatus: 'INSTOCK' },
+    { name: 'Product 9', inventoryStatus: 'INSTOCK' },
+    { name: 'Product 6', inventoryStatus: 'OUTOFSTOCK' },
+    { name: 'Product 7', inventoryStatus: 'INSTOCK' },
+    { name: 'Product 8', inventoryStatus: 'INSTOCK' },
+    { name: 'Product 9', inventoryStatus: 'INSTOCK' },
+    { name: 'Product 2', inventoryStatus: 'LOWSTOCK' },
+    { name: 'Product 3', inventoryStatus: 'OUTOFSTOCK' },
+    { name: 'Product 4', inventoryStatus: 'INSTOCK' },
+    { name: 'Product 5', inventoryStatus: 'INSTOCK' },
+    { name: 'Product 6', inventoryStatus: 'OUTOFSTOCK' },
+    { name: 'Product 7', inventoryStatus: 'INSTOCK' },
+  ]);
+  const layout = 'grid';
 
+  // Plantilla para renderizar cada elemento
+  const itemTemplate = (product) => {
+    if (!product) return null;
+
+    return (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Card product={product} />
+      </Suspense>
+    );
+  };
   return (
-    <div>
-      <div className="grid mx-2 my-2 flex justify-content-center flex-wrap">
-        <Card subTitle={"producto_1"} className="col-4 mx-2 my-2 flex">
-          <img
-            src={img}
-            style={{ maxWidth: "300px", maxHeight: "300px" }}
-            alt="Lesbiana"
-            className="card-image"
-          />
-          <h3 className="align-text-right">Pintura Acrilica</h3>
-          <p>Precio: 250$</p>
-          <i className="pi pi-shopping-cart" style={{ fontSize: "1rem" }}></i>
-        </Card>
-        {/* Repetir Card para más productos */}
-        <Card subTitle={"producto_2"} className="col-4 mx-2 my-2 flex">
-          <img
-            src={img}
-            style={{ maxWidth: "300px", maxHeight: "300px" }}
-            alt="Lesbiana"
-            className="card-image"
-          />
-          <h3>Pintura Acrilica</h3>
-          <p>Precio: 250$</p>
-          <i className="pi pi-shopping-cart" style={{ fontSize: "1rem" }}></i>
-        </Card>
-        <Card subTitle={"producto_1"} className="col-4 mx-2 my-2 flex">
-          <img
-            src={img}
-            style={{ maxWidth: "300px", maxHeight: "300px" }}
-            alt="Lesbiana"
-            className="card-image"
-          />
-          <h3 className="align-text-right">Pintura Acrilica</h3>
-          <p>Precio: 250$</p>
-          <i className="pi pi-shopping-cart" style={{ fontSize: "1rem" }}></i>
-        </Card>
-        <Card subTitle={"producto_1"} className="col-4 mx-2 my-2 flex">
-          <img
-            src={img}
-            style={{ maxWidth: "300px", maxHeight: "300px" }}
-            alt="Lesbiana"
-            className="card-image"
-          />
-          <h3 className="align-text-right">Pintura Acrilica</h3>
-          <p>Precio: 250$</p>
-          <i className="pi pi-shopping-cart" style={{ fontSize: "1rem" }}></i>
-        </Card>
-        {/* Más Cards aquí */}
-      </div>
+    <div className="card">
+      <DataView value={products} itemTemplate={itemTemplate} paginator rows={8}/>
     </div>
   );
 };

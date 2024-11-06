@@ -2,8 +2,6 @@ import React from 'react'
 import { Menubar } from "primereact/menubar";
 
 function NavBar({session}) {
-    console.log(session ?? 'hola mundo')
-    
     const items = [
         {
             label: "Catalogo",
@@ -78,7 +76,7 @@ function NavBar({session}) {
     };
     return (
         <>
-            <Menubar model={items} style={customColors} className="my-2" />
+            <Menubar model={items} className="my-2" />
         </>
     )
 }
