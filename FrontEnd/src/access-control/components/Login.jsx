@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Button } from 'primereact/button'
 import { InputText } from 'primereact/inputtext'
 import { Password } from 'primereact/password'
-import { validMail, loginMethod } from '../utils/useMethods'
+import { validMail, loginMethod, sendMessage } from '../utils/useMethods'
+import { useNavigate } from 'react-router-dom'
 import img from '../../assets/prueba.png'
 
 function Login({reload}) {
@@ -10,6 +11,7 @@ function Login({reload}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [validEmail, setValidEmail] = useState(false)
+    const navigate = useNavigate()
 
     const styleLink = 'mt-2 no-underline'
     
@@ -26,11 +28,12 @@ function Login({reload}) {
 
     const login = async (e) => {
         e.preventDefault()
+        sendMessage('login', 'load');
         const data = {
             mail: email,
             pass: password
         }
-        const start = await loginMethod({data, reload});
+        const start = await loginMethod({data, reload, navigate});
         console.table({email, password});     
     }
 
