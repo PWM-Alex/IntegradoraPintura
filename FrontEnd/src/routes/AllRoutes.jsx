@@ -4,7 +4,8 @@ import NavBar from '../global-components/NavBar'
 import Login from '../access-control/components/Login'
 import RecoveryPassword from '../access-control/components/RecoveryPassword'
 import Register from '../access-control/components/Register'
-import Catalogue from '../Catalogue-client/catalogue'
+import CataloguePage from '../Catalogue-client/pages/CataloguePage'
+import CatalogueEmployeePage from '../employee/pages/CatalogueEmployeePage'
 
 function AllRoutes() {
     const validSessionExist = localStorage.getItem('session');
@@ -13,30 +14,28 @@ function AllRoutes() {
     const navigate = useNavigate();
 
     const Reload = () => {
-        setReload(true)
-    }
-
-    React.useEffect(() => {
-    }, [reload])
-
-    React.useEffect(() => {
-        validSessionExist ? navigate('/catalogue') : navigate('/')
-    }, [])
+        setReload(!reload); 
+    };
 
     return (
         <>
             {validSessionExist ? <NavBar session={role} /> : null}
-                {validSessionExist ?
-                    <Routes>
-                        <Route path='/catalogue' element={<Catalogue />} />
-                    </Routes> :
-                    <Routes>
+            <Routes>
+                {validSessionExist ? (
+                    <>
+                        <Route path='/catalogue' element={<CataloguePage />} />
+                        <Route path='/employee' element={<CatalogueEmployeePage />} />
+                    </>
+                ) : (
+                    <>
                         <Route path='/' element={<Login reload={Reload} />} />
                         <Route path='/recovery' element={<RecoveryPassword />} />
                         <Route path='/register' element={<Register />} />
-                    </Routes>
-                }
+                    </>
+                )}
+            </Routes>
         </>
-    )
+    );
 }
-export default AllRoutes
+
+export default AllRoutes;
