@@ -1,8 +1,7 @@
 import React from "react";
 import { Menubar } from "primereact/menubar";
-import { Card } from "primereact/card";
 import "primeicons/primeicons.css";
-import img from "../assets/prueba.png";
+import  CardPrime  from "./components/Card";
 
 const Catalogue = () => {
   const items = [
@@ -74,60 +73,74 @@ const Catalogue = () => {
     color: "white",
     border: "none",
   };
-  const customSize = {
-    max_width: "200px",
-  };
+  const cardData = [
+    {
+      id: 1,
+      title: "Card 1",
+      description: "This is the first card.",
+      image: "https://via.placeholder.com/300",
+    },
+    {
+      id: 2,
+      title: "Card 2",
+      description: "This is the second card.",
+      image: "https://via.placeholder.com/300",
+    },
+    {
+      id: 3,
+      title: "Card 3",
+      description: "This is the third card.",
+      image: "https://via.placeholder.com/300",
+    },
+    {
+      id: 4,
+      title: "Card 4",
+      description: "This is the forth card.",
+      image: "https://via.placeholder.com/300",
+    },
+    {
+      id: 1,
+      title: "Card 1",
+      description: "This is the first card.",
+      image: "https://via.placeholder.com/300",
+    },
+    {
+      id: 2,
+      title: "Card 2",
+      description: "This is the second card.",
+      image: "https://via.placeholder.com/300",
+    },
+    {
+      id: 3,
+      title: "Card 3",
+      description: "This is the third card.",
+      image: "https://via.placeholder.com/300",
+    },
+    {
+      id: 4,
+      title: "Card 4",
+      description: "This is the forth card.",
+      image: "https://via.placeholder.com/300",
+    },
+  ];
+  
 
   return (
     <div>
-      <Menubar model={items} style={customColors} className="my-2" />
-      <div className="grid mx-2 my-2 flex justify-content-center flex-wrap">
-        <Card subTitle={"producto_1"} className="col-4 mx-2 my-2 flex">
-          <img
-            src={img}
-            style={{ maxWidth: "300px", maxHeight: "300px" }}
-            alt="Lesbiana"
-            className="card-image"
-          />
-          <h3 className="align-text-right">Pintura Acrilica</h3>
-          <p>Precio: 250$</p>
-          <i className="pi pi-shopping-cart" style={{ fontSize: "1rem" }}></i>
-        </Card>
-        {/* Repetir Card para más productos */}
-        <Card subTitle={"producto_2"} className="col-4 mx-2 my-2 flex">
-          <img
-            src={img}
-            style={{ maxWidth: "300px", maxHeight: "300px" }}
-            alt="Lesbiana"
-            className="card-image"
-          />
-          <h3>Pintura Acrilica</h3>
-          <p>Precio: 250$</p>
-          <i className="pi pi-shopping-cart" style={{ fontSize: "1rem" }}></i>
-        </Card>
-        <Card subTitle={"producto_1"} className="col-4 mx-2 my-2 flex">
-          <img
-            src={img}
-            style={{ maxWidth: "300px", maxHeight: "300px" }}
-            alt="Lesbiana"
-            className="card-image"
-          />
-          <h3 className="align-text-right">Pintura Acrilica</h3>
-          <p>Precio: 250$</p>
-          <i className="pi pi-shopping-cart" style={{ fontSize: "1rem" }}></i>
-        </Card>
-        <Card subTitle={"producto_1"} className="col-4 mx-2 my-2 flex">
-          <img
-            src={img}
-            style={{ maxWidth: "300px", maxHeight: "300px" }}
-            alt="Lesbiana"
-            className="card-image"
-          />
-          <h3 className="align-text-right">Pintura Acrilica</h3>
-          <p>Precio: 250$</p>
-          <i className="pi pi-shopping-cart" style={{ fontSize: "1rem" }}></i>
-        </Card>
-        {/* Más Cards aquí */}
+      {/* Menu */}
+      <Menubar model={items} className="my-2" />
+      {/* Cards */}
+      <div className="grid ">
+        {cardData.map((card) => (
+          <div key={card.id} className="col-2 flex align-items-center justify-content-center ">
+            <CardPrime
+              title={card.title}
+              description={card.description}
+              image={card.image}
+              onAction={() => handleAction(card.id)}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
