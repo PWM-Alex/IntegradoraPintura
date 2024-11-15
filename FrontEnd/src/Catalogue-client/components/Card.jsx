@@ -1,5 +1,4 @@
 import React from 'react';
-import { Rating } from 'primereact/rating';
 import { Tag } from 'primereact/tag';
 import { Button } from 'primereact/button';
 import Image from "../../assets/prueba.png";
