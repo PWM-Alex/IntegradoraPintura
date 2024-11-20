@@ -26,4 +26,3 @@ function CardPrime({ title, description, image,stock,onAction }) {
 }
 
 export default CardPrime;
-
